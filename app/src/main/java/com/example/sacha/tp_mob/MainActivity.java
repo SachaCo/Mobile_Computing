@@ -3,20 +3,24 @@ package com.example.sacha.tp_mob;
         import android.content.Intent;
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
+        import android.support.v7.widget.RecyclerView;
         import android.view.View;
         import android.widget.Button;
         import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView textViewName;
-
+    //private TextView textViewName;
+    private RecyclerView recycleView;
     private Button buttonNext;
+    private NameAdapteur nameAdapteur;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        nameAdapteur = new NameAdapteur();
 
         initViews();
     }
@@ -24,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initViews(){
 
-        textViewName = findViewById(R.id.activity_main_textview_name);
+        recycleView = findViewById(R.id.rec);
         buttonNext = findViewById(R.id.activity_main_button_next);
         //textViewName.setText(R.string.activity_main_textview_name);
         buttonNext.setOnClickListener(new View.OnClickListener() {
@@ -46,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
-        textViewName.setText(DataManager.getInstance().getName());
+        nameAdapteur.updateData(DataManager.getInstance().getName());
+        //textViewName.setText(DataManager.getInstance().getName());
     }
 
 

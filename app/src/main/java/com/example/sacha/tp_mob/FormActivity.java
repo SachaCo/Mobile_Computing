@@ -35,10 +35,12 @@ public class FormActivity extends AppCompatActivity {
     private void saveData(){
 
         String name = editTextName.getText().toString();
-        DataManager.getInstance().setName(name);
+        DataManager.getInstance().addName(name);
 
         finish();
     }
+
+
 
         /*Save DATA */
         /*Intent intent = new Intent();
