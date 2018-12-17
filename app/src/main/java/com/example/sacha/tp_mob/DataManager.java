@@ -10,10 +10,10 @@ import java.util.List;
 
 public class DataManager {
     private static DataManager INSTANCE;
-
-    private List<String> name = new ArrayList<>();
+    private List<String> name;
 
     private DataManager(){
+        name = new ArrayList<>();
     }
 
     public static DataManager getInstance(){
@@ -25,10 +25,6 @@ public class DataManager {
 
     public List<String> getName() {
         return name;
-    }
-
-    public void setName(ArrayList<String> name) {
-        this.name = name;
     }
 
     public void addName(String n){

@@ -15,7 +15,7 @@ import java.util.List;
 
 public class NameAdapteur extends RecyclerView.Adapter<NameViewHolder> {
 
-    List<String> nameList;
+    private List<String> nameList;
 
     public NameAdapteur() {
         nameList = new ArrayList<>();
