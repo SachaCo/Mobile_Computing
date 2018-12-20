@@ -10,25 +10,25 @@ import java.util.List;
 
 public class DataManager {
     private static DataManager INSTANCE;
-    private List<String> name;
+    private List<String> name_list;
 
-    private DataManager(){
-        name = new ArrayList<>();
+    private DataManager() {
+        name_list = new ArrayList<>();
     }
 
-    public static DataManager getInstance(){
-        if (INSTANCE == null){
+    public static DataManager getInstance() {
+        if (INSTANCE == null) {
             INSTANCE = new DataManager();
         }
         return INSTANCE;
     }
 
-    public List<String> getName() {
-        return name;
+    public List<String> getName_list() {
+        return name_list;
     }
 
-    public void addName(String n){
-        name.add(n);
+    public void addName(String n) {
+        name_list.add(n);
     }
 }
 

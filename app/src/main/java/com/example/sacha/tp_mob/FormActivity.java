@@ -32,7 +32,7 @@ public class FormActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
-    private void saveData(){
+    private void saveData() {
         String name = editTextName.getText().toString();
         if (!name.isEmpty()) {
             DataManager.getInstance().addName(name);
@@ -42,10 +42,10 @@ public class FormActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
 
-            case R.id.activity_form_button_validate :
-                Intent intent  = new Intent(this, MainActivity.class);
+            case R.id.activity_form_button_validate:
+                Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 break;
         }

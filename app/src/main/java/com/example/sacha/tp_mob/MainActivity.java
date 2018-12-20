@@ -8,37 +8,40 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button buttonNext;
+    private Button buttonNext, btnDelete;
     private RecyclerView recycleView;
-    private NameAdapteur nameAdapteur;
+    private NameListAdapteur nameAdapteur;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        nameAdapteur = new NameAdapteur();
+        nameAdapteur = new NameListAdapteur();
 
         initViews();
         initList();
     }
 
-    private void initViews(){
+    private void initViews() {
         buttonNext = findViewById(R.id.activity_main_button_next);
+        btnDelete = findViewById(R.id.activity_main_button_delete);
         recycleView = findViewById(R.id.rec);
         buttonNext.setOnClickListener(this);
+        btnDelete.setOnClickListener(this);
     }
 
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
-        nameAdapteur.updateData(DataManager.getInstance().getName());
+        nameAdapteur.updateData(DataManager.getInstance().getName_list());
     }
 
-    private void initList(){
+    private void initList() {
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(linearLayoutManager.VERTICAL);
 
@@ -47,15 +50,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 ){
+        if (requestCode == 1) {
 
-            if (resultCode == RESULT_OK && data.getExtras()!= null){
+            if (resultCode == RESULT_OK && data.getExtras() != null) {
                 Bundle args = data.getExtras();
                 String username = args.getString("USERNAME");
 
-            }else{
+            } else {
 
                 //code
 
@@ -64,16 +67,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-     public void onClick(View view) {
-        switch (view.getId()){
+    public void onClick(View view) {
+        switch (view.getId()) {
 
-            case R.id.activity_main_button_next :
-                Intent intent  = new Intent(MainActivity.this, FormActivity.class);
+            case R.id.activity_main_button_next:
+                Intent intent = new Intent(MainActivity.this, FormActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.activity_main_button_delete:
+                DataManager.getInstance().getName_list().removeAll(DataManager.getInstance().getName_list());
+                nameAdapteur.updateData(DataManager.getInstance().getName_list());
                 break;
         }
     }
-
 }
 
 
